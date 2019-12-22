@@ -60,6 +60,7 @@ void updateScreen(float messV) {
     } else {
       lcd.print((int)R1);
     }
+    // print a ohm sign at the end
     lcd.write(244);
   }
 
@@ -95,6 +96,7 @@ void setup()
   lcd.begin(16, 2); // Starting the lcd driver
   lcd.clear();
  
+  // read custom R settings from eeprom
   if (EEPROM.read(2) != 7) {
     Serial.print("EEPROM setup");
     EEPROM.update(0, (int)(R1/1000));
@@ -131,7 +133,7 @@ void loop()
 
   Taster = Tasterstatus(); //Hier springt der Loop in den oben angegebenen Programmabschnitt "Tasterstatus" und liest dort den gedrückten Taster aus.
 
-  switch (Taster) // Abhängig von der gedrückten Taste wird in dem folgenden switch-case Befehl entschieden, was auf dem LCD angezeigt wird.
+  switch (Taster) 
   {
     case Tasterrechts: // Wenn die rechte Taste gedrückt wurde...
       {
@@ -195,6 +197,6 @@ void loop()
         //lcd.print("no key ");
         break;
       }
-  } //switch-case Befehl beenden
+  } // switch
 
-} //Loop beenden
+} // loop
